@@ -1,24 +1,42 @@
+import { useState } from 'react';
 import './triqui.component.integrated.css'
+
 const Turnos = {
-    X : '×',
-    O : 'o'
+    X : 'X',
+    O : 'O'
 };
 
-const Tabla = Array(9).fill(null);
+const Cuadro = ({ children, Seleccionado, update, index }) => {
+    const ClaseJugador = `Cuadro ${ Seleccionado ? "Seleccionado" : "" }`;
+    const HacerClick = () => {
+        update();
+    }
 
-const Cuadro = ({ children, update, index }) => {
     return (
-        <div className='Cuadro'>
+        <div onClick={HacerClick} className={ClaseJugador}>
             {children}
         </div>
     )
 }
 
 function Triqui() {
+    const [Tabla, setTabla] = useState( 
+        Array(9).fill(null)
+    );
+
+    const [Jugador, setJugador] = useState(
+        Turnos.X
+    );
+
+    const update = () => {
+        const NuevoTurno = Jugador == Turnos.X ? Turnos.O : Turnos.X;
+        setJugador(NuevoTurno);
+    }
+
     return (
         <section className='Tabla'>
             <h1>
-                Juego Triqui
+                Triqui
             </h1>
             <section className='ContenedorJuego'>
                 <div className='Juego'>
@@ -29,8 +47,9 @@ function Triqui() {
                                     <Cuadro
                                         key={index}
                                         index={index}
+                                        update={update}
                                     >
-                                        {index}
+                                        
                                     </Cuadro>
                                 )
                             }
@@ -38,6 +57,15 @@ function Triqui() {
                     }
                 </div>
             </section>
+            <section className='Jugador'>
+                <Cuadro Seleccionado={ Jugador === Turnos.X } >
+                    {Turnos.X}
+                </Cuadro>
+                <Cuadro Seleccionado={ Jugador === Turnos.O }>
+                    {Turnos.O}
+                </Cuadro>
+            </section>
+            
         </section>
     )
 }

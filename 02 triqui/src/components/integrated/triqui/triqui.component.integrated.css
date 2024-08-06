@@ -1,3 +1,6 @@
+h1 {
+    font-size: 3em;
+}
 .Tabla {
     text-align: center;
 }
@@ -22,6 +25,24 @@
     cursor: pointer;
     font-size: 2em;
 }
+.Jugador {
+    display: flex;
+    justify-content: center;
+    margin: 1em auto;
+}
+.Jugador .Cuadro,
+.Ganador .Cuadro {
+  width: 3em;
+  height: 3em;
+  pointer-events: none;
+  border-color: transparent;
+}
+
+.Cuadro.Seleccionado {
+  color: #fff;
+  background: #09f;
+}
+
 
 @media screen and (min-width:0px) and (max-width:575px) {
     
