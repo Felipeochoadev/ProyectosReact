@@ -1,0 +1,23 @@
+body{
+	margin: 0;
+	padding: 0;
+	overflow-x: hidden;
+  background-color: #222;
+  font-size: 1vw;
+  color: white;
+  font-family: system-ui;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+#root {
+  width: 100%;
+}
+
+@media screen and (min-width:0px) and (max-width:575px) {
+  body {
+      font-size: 3vw;
+  }
+}

@@ -1,0 +1,28 @@
+.Tabla {
+    text-align: center;
+}
+.ContenedorJuego {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Juego {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1em;
+    width: 20em;
+}
+.Cuadro{
+    width: 3em;
+    height: 3em;
+    border: 0.1em solid #eee;
+    border-radius: 0.5em;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    font-size: 2em;
+}
+
+@media screen and (min-width:0px) and (max-width:575px) {
+    
+}
