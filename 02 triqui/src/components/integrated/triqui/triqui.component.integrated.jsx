@@ -9,7 +9,7 @@ const Turnos = {
 const Cuadro = ({ children, Seleccionado, update, index }) => {
     const ClaseJugador = `Cuadro ${ Seleccionado ? "Seleccionado" : "" }`;
     const HacerClick = () => {
-        update();
+        update(index);
     }
 
     return (
@@ -28,11 +28,14 @@ function Triqui() {
         Turnos.X
     );
 
-    const update = () => {
+    const update = (index) => {
+        const nuevaTabla = [ ... Tabla];
+        nuevaTabla[index] = Jugador;
+        setTabla(nuevaTabla);
         const NuevoTurno = Jugador == Turnos.X ? Turnos.O : Turnos.X;
         setJugador(NuevoTurno);
     }
-
+    
     return (
         <section className='Tabla'>
             <h1>
@@ -49,7 +52,7 @@ function Triqui() {
                                         index={index}
                                         update={update}
                                     >
-                                        
+                                        {Tabla[index]}
                                     </Cuadro>
                                 )
                             }
