@@ -6,6 +6,18 @@ const Turnos = {
     O : 'O'
 };
 
+const ComboGanador = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+    [1, 4, 7],
+    [0, 3, 6],
+    [2, 5, 8]
+]
+
+
 const Cuadro = ({ children, Seleccionado, update, index }) => {
     const ClaseJugador = `Cuadro ${ Seleccionado ? "Seleccionado" : "" }`;
     const HacerClick = () => {
@@ -28,12 +40,45 @@ function Triqui() {
         Turnos.X
     );
 
+    const [Ganador, setGanador] = useState(
+        null
+    )
+
+    const ValidarGanador = (Tabla) => {
+        for (const Combo of ComboGanador) {
+            const [a, b, c] = Combo;
+            if (
+                Tabla[a] &&
+                Tabla[a] === Tabla[b] &&
+                Tabla[a] === Tabla[c]
+            ){
+                return Tabla[a];
+            }
+        }
+        return null;
+    }
+
     const update = (index) => {
+        if(Tabla[index] || Ganador){
+            return
+        }
         const nuevaTabla = [ ... Tabla];
         nuevaTabla[index] = Jugador;
         setTabla(nuevaTabla);
         const NuevoTurno = Jugador == Turnos.X ? Turnos.O : Turnos.X;
         setJugador(NuevoTurno);
+
+        const NuevoGanador = ValidarGanador(nuevaTabla);
+        if(NuevoGanador){
+            setGanador(NuevoGanador);
+        }
+
+    }
+
+    const Reiniciar = () => {
+        setTabla( Array(9).fill(null) );
+        setJugador( Turnos.X );
+        setGanador( null );
     }
     
     return (
@@ -41,6 +86,9 @@ function Triqui() {
             <h1>
                 Triqui
             </h1>
+            <button className='BotonReiniciar' onClick={Reiniciar}>
+                Reiniciar tabla
+            </button>
             <section className='ContenedorJuego'>
                 <div className='Juego'>
                     {
@@ -68,7 +116,35 @@ function Triqui() {
                     {Turnos.O}
                 </Cuadro>
             </section>
-            
+            {
+                Ganador != null && (
+                    <section className='Resultado'>
+                        <div>
+                            <h1>
+                                { 
+                                    Ganador == false
+                                    ? 'Empate'
+                                    : 'Gano'
+                                }
+                            </h1>
+                        </div>
+                        <header>
+                            {
+                                Ganador && (
+                                    <Cuadro> 
+                                        {Ganador}
+                                    </Cuadro>
+                                )
+                            }
+                        </header>
+                        <footer>
+                            <button className='BotonReiniciar' onClick={Reiniciar}>
+                                Reiniciar tabla
+                            </button>
+                        </footer>
+                    </section>
+                )
+            }
         </section>
     )
 }
