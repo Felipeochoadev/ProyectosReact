@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import './triqui.component.integrated.css'
+import 'canvas-confetti'
+import confetti from 'canvas-confetti';
 
 const Turnos = {
     X : 'X',
@@ -58,6 +60,10 @@ function Triqui() {
         return null;
     }
 
+    const ValidarJuego = (nuevaTabla) => {
+        return nuevaTabla.every( (Cuadro) => Cuadro != null );
+    }
+
     const update = (index) => {
         if(Tabla[index] || Ganador){
             return
@@ -70,7 +76,10 @@ function Triqui() {
 
         const NuevoGanador = ValidarGanador(nuevaTabla);
         if(NuevoGanador){
+            confetti();
             setGanador(NuevoGanador);
+        } else if( ValidarJuego(nuevaTabla) ){
+            setGanador(false);
         }
 
     }
@@ -87,7 +96,7 @@ function Triqui() {
                 Triqui
             </h1>
             <button className='BotonReiniciar' onClick={Reiniciar}>
-                Reiniciar tabla
+                Reiniciar Juego
             </button>
             <section className='ContenedorJuego'>
                 <div className='Juego'>
@@ -119,7 +128,7 @@ function Triqui() {
             {
                 Ganador != null && (
                     <section className='Resultado'>
-                        <div>
+                        <div className='Texto'>
                             <h1>
                                 { 
                                     Ganador == false
@@ -128,7 +137,7 @@ function Triqui() {
                                 }
                             </h1>
                         </div>
-                        <header>
+                        <header className='Ganador'>
                             {
                                 Ganador && (
                                     <Cuadro> 
@@ -139,7 +148,7 @@ function Triqui() {
                         </header>
                         <footer>
                             <button className='BotonReiniciar' onClick={Reiniciar}>
-                                Reiniciar tabla
+                                Reiniciar Juego
                             </button>
                         </footer>
                     </section>

@@ -43,6 +43,54 @@ h1 {
   background: #09f;
 }
 
+.Resultado {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    display: grid;
+    place-items: center;
+    align-content: center;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.Resultado .Texto {
+    background: #111;
+    margin: 1em;
+    height: 20em;
+    width: 20em;
+    border: 0.1em solid #eee;
+    border-radius: 0.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Resultado .Ganador {
+    border: 0.1em solid #eee;
+    border-radius: 0.5em;
+    background-color: #09f;
+  }
+
+.Tabla button {
+    padding: 0.5em;
+    margin: 2em;
+    background: transparent;
+    border: 0.1em solid #eee;
+    color: #eee;
+    width: 10em;
+    border-radius: 0.5em;
+    transition: 0.2s;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.Tabla button:hover {
+    background: #eee;
+    color: #222;
+}
+
 
 @media screen and (min-width:0px) and (max-width:575px) {
     
