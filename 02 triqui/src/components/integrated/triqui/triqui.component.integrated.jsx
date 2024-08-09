@@ -18,7 +18,6 @@ const ComboGanador = [
     [2, 5, 8]
 ]
 
-
 const Cuadro = ({ children, Seleccionado, update, index }) => {
     const ClaseJugador = `Cuadro ${ Seleccionado ? "Seleccionado" : "" }`;
     const HacerClick = () => {
@@ -33,12 +32,16 @@ const Cuadro = ({ children, Seleccionado, update, index }) => {
 }
 
 function Triqui() {
-    const [Tabla, setTabla] = useState( 
-        Array(9).fill(null)
+    const [Tabla, setTabla] = useState( () => {
+            const RecuperarTabla = window.localStorage.getItem('Tabla');
+            return RecuperarTabla ? JSON.parse(RecuperarTabla) : Array(9).fill(null)
+        }
     );
 
-    const [Jugador, setJugador] = useState(
-        Turnos.X
+    const [Jugador, setJugador] = useState( () => {
+            const RecuperarTurno = window.localStorage.getItem('Turno');
+            return RecuperarTurno ?? Turnos.X
+        }
     );
 
     const [Ganador, setGanador] = useState(
@@ -73,6 +76,9 @@ function Triqui() {
         const NuevoTurno = Jugador == Turnos.X ? Turnos.O : Turnos.X;
         setJugador(NuevoTurno);
 
+        window.localStorage.setItem('Tabla', JSON.stringify(nuevaTabla) );
+        window.localStorage.setItem('Turno', NuevoTurno );
+
         const NuevoGanador = ValidarGanador(nuevaTabla);
         if(NuevoGanador){
             confetti();
@@ -87,6 +93,8 @@ function Triqui() {
         setTabla( Array(9).fill(null) );
         setJugador( Turnos.X );
         setGanador( null );
+        window.localStorage.removeItem('Tabla');
+        window.localStorage.removeItem('Turno');
     }
     
     return (
