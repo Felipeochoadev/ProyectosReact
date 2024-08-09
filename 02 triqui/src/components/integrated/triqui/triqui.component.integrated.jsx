@@ -83,6 +83,8 @@ function Triqui() {
         if(NuevoGanador){
             confetti();
             setGanador(NuevoGanador);
+            window.localStorage.removeItem('Tabla');
+            window.localStorage.removeItem('Turno');
         } else if( ValidarJuego(nuevaTabla) ){
             setGanador(false);
         }
