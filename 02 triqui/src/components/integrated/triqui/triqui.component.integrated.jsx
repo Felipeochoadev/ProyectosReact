@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import './triqui.component.integrated.css'
-import 'canvas-confetti'
 import confetti from 'canvas-confetti';
 
 const Turnos = {
