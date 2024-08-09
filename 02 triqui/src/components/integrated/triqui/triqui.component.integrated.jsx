@@ -19,7 +19,7 @@ const ComboGanador = [
 ]
 
 const Cuadro = ({ children, Seleccionado, update, index }) => {
-    const ClaseJugador = `Cuadro ${ Seleccionado ? "Seleccionado" : "" }`;
+    const ClaseJugador = `seleccion Cuadro ${ Seleccionado ? "Seleccionado" : "" }`;
     const HacerClick = () => {
         update(index);
     }

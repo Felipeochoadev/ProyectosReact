@@ -12,6 +12,8 @@ body{
   min-height: 100vh;
 }
 
+.seleccion { -webkit-tap-highlight-color: transparent; }
+
 #root {
   width: 100%;
 }
