@@ -1,7 +1,7 @@
 import './App.css'
-import Triqui from './components/integrated/triqui/triqui.component.integrated.jsx'
+import Triqui from './modules/triqui/module.triqui'
 
-function App() {
+function App () {
   return <Triqui />
 }
 
