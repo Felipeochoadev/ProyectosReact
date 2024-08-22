@@ -1,6 +1,6 @@
 # Triqui React
 
-Una breve descripción del proyecto. 
+Proyecto realizado en estudio del curso react dado por midudev el cual lo personalice a mi estructura de desarrollo
 
 ## Despliegue en Vivo
 
@@ -10,15 +10,19 @@ Puedes ver el proyecto en funcionamiento en el siguiente enlace:
 
 ## Características
 
-- Característica 1
-- Característica 2
-- Característica 3
+- Screaming Architecture
+- Hook useState
+- HTML semantico
+- LocalStorage
 
 ## Tecnologías Utilizadas
 
-- Tecnología 1
-- Tecnología 2
-- Tecnología 3
+- React Vite
+- HTML
+- CSS
+- Javascrit
+- Standar
+- Eslint
 
 ## Instalación
 
@@ -26,6 +30,6 @@ Instrucciones paso a paso sobre cómo instalar y ejecutar el proyecto en un ento
 
 ```bash
 git clone https://github.com/Felipeochoadev/ProyectosReact.git
-cd nombre-del-repositorio
+cd '02 triqui'
 npm install
 npm start
